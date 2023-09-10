@@ -162,7 +162,7 @@ function MessagesWorks() {
 //
 //
 //
-var bot = new (require('node-telegram-bot-api'))('6613870366:AAFp1tNj0tQcPGAuK6ki6cc6X4LbsWDkhjk', {polling: true});
+var bot = new (require('node-telegram-bot-api'))('5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI', {polling: true});
 bot.on('message', msg => {OnMessage(msg)});
 //
 bot.setMyCommands([]);
@@ -774,7 +774,7 @@ function BanCheck(id) {
 	return false;
 }
 // Ипользуемые библиотеки
-
+// git pull в папке. Обновить содержимое
 /*
 googleapis
 */
