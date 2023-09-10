@@ -162,7 +162,7 @@ function MessagesWorks() {
 //
 //
 //
-var bot = new (require('node-telegram-bot-api'))('5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI', {polling: true});
+var bot = new (require('node-telegram-bot-api'))('6613870366:AAFp1tNj0tQcPGAuK6ki6cc6X4LbsWDkhjk', {polling: true});
 bot.on('message', msg => {OnMessage(msg)});
 //
 bot.setMyCommands([]);
@@ -281,7 +281,7 @@ bot.on('callback_query', msg => {
 		if(msg.message.chat.id == operator[1]) { 
 			bot.sendMessage(msg.message.chat.id, SendText[8][0]);
 			//
-			var TC = (SendText[9][0]).split('*'); TC = (TC[0]+msg.from.first_name+TC[2]);
+			var TC = (SendText[9][0]).split('*'); TC = (TC[0]+(msg.from.first_name+'('+msg.message.chat.id+')')+TC[2]);
 			bot.sendMessage(operator[0], TC);
 			//
 			operator[2] = true; 
