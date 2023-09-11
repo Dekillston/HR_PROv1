@@ -4,7 +4,7 @@ var PathFiles = './files/';
 //
 const fs = require('fs');
 // Главные переменные
-var operator = ['411709306', true, false, {}];
+var operator = ['411709306', true, false, {}, {}]; 
 //
 var google_sheets = 'google_sheets.json';
 //
@@ -161,7 +161,7 @@ function MessagesWorks() {
 //
 //
 //
-//
+// 5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI - id клиента 411709306
 var bot = new (require('node-telegram-bot-api'))('5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI', {polling: true});
 bot.on('message', msg => {OnMessage(msg)});
 //
@@ -305,7 +305,9 @@ bot.on('callback_query', msg => {
 						base[n]['second'] = ((new Date().getTime() / 1000)+SeconsOperator);
 					}); 
 				} else {
-					bot.sendMessage(msg.message.chat.id, SendText[18][0]);
+					bot.sendMessage(msg.message.chat.id, SendText[18][0]); 
+					//
+					operator[4][msg.message.chat.id] = [((new Date().getTime() / 1000)+600), msg.from.first_name];
 				}
 			} else { 
 				bot.sendMessage(msg.message.chat.id, SendText[19][0]);
@@ -426,6 +428,22 @@ function OperatorCode(msg) {
 		operator[1] = true;
 		//
 		operator[2] = false;
+		//
+		//
+		var keys = Object.keys(operator[4]);
+		//
+		var DateSecond = (new Date().getTime() / 1000);
+		for(var n = 0; n <= keys.length-1; n++) {
+			var person = operator[4][keys[n]];
+			if(person[0] >= DateSecond) {
+				//
+				var TC = (SendText[12][0]).split('*'); TC = (TC[0]+(person[1]+'('+keys[n]+')')+TC[2]);
+				ButtonMassage(operator[0], TC, [['Принять', '/connectId_'+keys[n]]]);
+				//
+			}
+		}
+		//
+		operator[4] = {};
 	} else if(msg.data == '/mailing_works') {
 		operator[3] = {};
 		operator[3].works = true;
@@ -574,9 +592,9 @@ function MassageOperator(msg) {
 
 
 
-// https://docs.google.com/spreadsheets/u/4/d/1DF4pvYB-4M82NmImHQ93SyVcikNp8zjtu4hFgeNwf0k/export?format=csv&id=1DF4pvYB-4M82NmImHQ93SyVcikNp8zjtu4hFgeNwf0k&gid=1845850837
 //
-// git remote add origin https://github.com/Dekillston/HR_PROv1.git
+//
+//
 //
 // Функции
 //
@@ -773,6 +791,7 @@ function BanCheck(id) {
 	}
 	return false;
 }
+// Не забыть поменять (оператора, ключ, и true в операторе)
 // Ипользуемые библиотеки
 // git pull в папке. Обновить содержимое
 /*
