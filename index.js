@@ -161,7 +161,7 @@ function MessagesWorks() {
 //
 //
 //
-// 5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI - id клиента 411709306
+// 5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI - id клиента 411709306 - разработчик 1884219679
 var bot = new (require('node-telegram-bot-api'))('5616050607:AAE8CNaCM9EP2-LknspJKdS4MkDhNoxYRCI', {polling: true});
 bot.on('message', msg => {OnMessage(msg)});
 //
@@ -241,8 +241,7 @@ bot.on('callback_query', msg => {
 	if(msg.data == '/further_start') {
 		ButtonMassage(msg.message.chat.id, SendText[1][0], [
 			[SendText[22][0], '/own_resources'],
-			[SendText[23][0], '/our_resources'],
-			CallAdmin
+			[SendText[23][0], '/our_resources']
 		]);
 	}
 	//
@@ -256,7 +255,7 @@ bot.on('callback_query', msg => {
 	}
 	//
 	// Если нажал куда он хочет работать
-	var work = [[SendText[26][0], '/get_access'], CallAdmin];
+	var work = [[SendText[26][0], '/get_access']];
 	if(msg.data == '/index_food') { // Яндекс еда
 		ButtonMassage(msg.message.chat.id, SendText[3][0], work);
 	} else if(msg.data == '/scooter') { // Самокат
@@ -381,7 +380,7 @@ bot.on('callback_query', msg => {
 							r.cooperation
 						]],
 						fun: (d) => {
-							bot.sendMessage(msg.message.chat.id, SendText[54][0]);
+							ButtonMassage(msg.message.chat.id, SendText[54][0], [CallAdmin]);
 							//
 							BaseKeysRecord(msg.message.chat.id, (n) => {delete base[n].resume;}); 
 						}
